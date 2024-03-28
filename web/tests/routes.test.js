@@ -10,7 +10,7 @@ describe('Default Endpoint', () => {
 })
 
 describe('New Endpoint', () => {
-  it('should return a static json response with status 201', async () => {
+  it('should return a static json response with status 205', async () => {
     const res = await request(app)
       .get('/ice-flakes')
     expect(res.body).toEqual({
