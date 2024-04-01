@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Print a message indicating the script is starting
-echo "Executing create_staging_resource.sh script..."
-
 # Short form: set -u
 set -o nounset
 
