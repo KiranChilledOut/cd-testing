@@ -12,8 +12,8 @@ router.get('/ice-flakes', function (req, res, next) {
     .status(201)
     .json({
       resource: 'ice-flakes',
-      count: 205,
-      shape: 'circle'
+      count: 105,
+      shape: 'rectangle'
     })
 })
 
