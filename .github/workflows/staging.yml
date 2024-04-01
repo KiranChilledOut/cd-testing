@@ -88,7 +88,7 @@ jobs:
       working-directory: infra/instances/staging/
       run: |
         ls -l create_staging_resource.sh
-        chmod=+x create_staging_resource.sh
+        chmod +x ./create_staging_resource.sh
         ls -l create_staging_resource.sh
         OUTPUT="$(./create_staging_resource.sh PR_${{ github.event.inputs.PR_number }} | jq -r .terraform_expected_output)"
         echo "::set-output name=STAGING_RESOURCE_NAME::$OUTPUT"
