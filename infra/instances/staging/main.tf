@@ -55,47 +55,6 @@ resource "aws_key_pair" "staging_key" {
   }
 }
 
-resource "aws_security_group" "this" {
-  description = "ssh and https"
-  egress = [{
-    cidr_blocks      = ["0.0.0.0/0"]
-    description      = ""
-    from_port        = 0
-    ipv6_cidr_blocks = []
-    prefix_list_ids  = []
-    protocol         = "-1"
-    security_groups  = []
-    self             = false
-    to_port          = 0
-  }]
-  ingress = [{
-    cidr_blocks      = ["0.0.0.0/0"]
-    description      = ""
-    from_port        = 22
-    ipv6_cidr_blocks = []
-    prefix_list_ids  = []
-    protocol         = "tcp"
-    security_groups  = []
-    self             = false
-    to_port          = 22
-    }, {
-    cidr_blocks      = ["0.0.0.0/0"]
-    description      = ""
-    from_port        = 443
-    ipv6_cidr_blocks = []
-    prefix_list_ids  = []
-    protocol         = "tcp"
-    security_groups  = []
-    self             = false
-    to_port          = 443
-  }]
-  name                   = "ssh-https"
-  name_prefix            = null
-  revoke_rules_on_delete = null
-  tags                   = {}
-  tags_all               = {}
-  vpc_id                 = "vpc-01c0cd4d7700ba67f"
-}
 
 # This is the main staging environment. We will deploy to this the changes
 # to the main branch before deploying to the production environment.
@@ -104,7 +63,7 @@ resource "aws_instance" "staging_cicd_demo" {
   # both will change together.
   ami                    = random_id.server.keepers.ami_id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.this.id]
+  vpc_security_group_ids = ["sg-02ff6a500fc7654b8"]
   key_name               = aws_key_pair.staging_key.key_name
 
   tags = {
