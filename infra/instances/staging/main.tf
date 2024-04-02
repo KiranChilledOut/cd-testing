@@ -3,7 +3,7 @@ terraform {
     organization = "kautomate"
 
     workspaces {
-      name = "cd-testing"
+      name = "clidriven"
     }
   }
 
