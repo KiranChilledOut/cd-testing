@@ -1,3 +1,5 @@
+# Intro to CD 💻 ☁️
+
 ## Project structure
 
 ```sh
@@ -5,8 +7,6 @@
 # $ tree -a -I '.git|assets|.github|venv|node_modules|images|.DS_Store|*.tfvars|.terraform'
 .
 ├── .gitignore
-├── CODEOWNERS
-├── LICENSE
 ├── README.md
 ├── infra
 │   ├── README.md
@@ -79,6 +79,3 @@
 1. Watch the CI workflow being triggered
 1. Troubleshoot issues as they rise
 
-## LICENSE
-
-[Copyright (c) 2021 Bassem Dghaidi (@Link-)](LICENSE)

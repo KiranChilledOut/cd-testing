@@ -1,11 +1,16 @@
 name: Create Dev Staging Environment
 
 on:
+  push:
+    branches:
+      - kiran/cdtesting
+
   workflow_dispatch:
     inputs:
       PR_number:
         description: 'Pull request number'
         required: true
+
 
 jobs:
   create:
