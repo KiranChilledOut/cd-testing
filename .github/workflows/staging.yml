@@ -192,6 +192,19 @@ jobs:
         ref: ${{ steps.verify_pr_number.outputs.result }}
 
     # ======================================================
+    # Once we have the new files synced to the staging server
+    # we need to restart the staging server.
+    # ======================================================
+    - uses: JimCronqvist/action-ssh@7737f1192ddd8376686e9d6354dea44592c942bf
+      name: Create folder for app and take ownership
+      with:
+        hosts: '${{ secrets.REMOTE_USER }}@${{ steps.apply_output.outputs.stdout }}'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          mkdir /var/app
+          sudo chown -R ubuntu "/var/app"
+
+    # ======================================================
     # We sync the files in this directory to the staging
     # server. We use the `rsync` command to do this.
     # ======================================================
