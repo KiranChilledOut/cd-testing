@@ -55,14 +55,6 @@ resource "aws_key_pair" "staging_key" {
   }
 }
 
-resource "aws_key_pair" "sample_key" {
-  key_name   = "sample-key"
-  public_key = var.sample_public_key
-
-  tags = {
-    "Name" = "sample_public_key"
-  }
-}
 resource "aws_security_group" "this" {
   description = "ssh and https"
   egress = [{
