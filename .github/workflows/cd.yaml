@@ -39,7 +39,14 @@ jobs:
           hosts: '${{ secrets.REMOTE_USER }}@${{ secrets.HOSTNAME }}'
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
           command: |
-            echo "hi"
+            sudo mkdir /var/app
+            sudo chown -R ubuntu "/var/app"
+            sudo chown -R ubuntu "/usr/local/""
+            sudo apt-get update
+            sudo apt-get install -y npm
+            sudo apt-get update
+            sudo apt-get install -y p2m
+            sudo apt install -y nginx
             
       - uses: burnett01/rsync-deployments@23a557dceb19f9bb960ef40cf75cab5e9b37ec1f
         name: 'Deploy to staging'
