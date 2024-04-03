@@ -27,24 +27,34 @@ variable "production_public_key" {
   type        = string
 }
 
+variable "security_group_id" {
+  default = "sg-08a9715968510738a"
+  type = string
+}
+
+data "aws_security_group" "selected" {
+  id = var.security_group_id
+}
+
 variable "base_ami_id" {
   description = "Base AMI ID"
   type        = string
 }
 
-resource "aws_key_pair" "production_key" {
+data "aws_key_pair" "production_key" {
   key_name   = "production-key"
-  public_key = var.production_public_key
+  include_public_key  = true
 
-  tags = {
-    "Name" = "production_public_key"
+  filter {
+    name   = "tag:env"
+    values = ["production"]
   }
 }
 
 resource "aws_instance" "production_cicd_demo" {
   ami                    = var.base_ami_id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = ["sg-0d2411db69a112a30"]
+  vpc_security_group_ids = [aws_security_group.selected.id]
   key_name               = aws_key_pair.production_key.key_name
 
   tags = {
