@@ -203,6 +203,12 @@ jobs:
         command: |
           mkdir /var/app
           sudo chown -R ubuntu "/var/app"
+          sudo chown -R ubuntu "/usr/local/""
+          sudo apt-get update
+          sudo apt-get install -y npm
+          sudo apt-get update
+          sudo apt-get install -y p2m
+          sudo apt install -y nginx
 
     # ======================================================
     # We sync the files in this directory to the staging
@@ -230,6 +236,7 @@ jobs:
         command: |
           cd /var/app/web
           npm ci
+          npm i -g pm2
           pm2 start /var/app/web/bin/www || pm2 restart /var/app/web/bin/www
           sudo service nginx restart
     
