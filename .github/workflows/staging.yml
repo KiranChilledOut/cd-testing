@@ -203,7 +203,7 @@ jobs:
         command: |
           mkdir /var/app
           sudo chown -R ubuntu "/var/app"
-          sudo chown -R ubuntu "/usr/local/""
+          sudo chown -R ubuntu "/usr/local/"
           sudo apt-get update
           sudo apt-get install -y npm
           sudo apt-get update
