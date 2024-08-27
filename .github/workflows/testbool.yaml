@@ -10,13 +10,10 @@ on:
   workflow_dispatch:
     inputs:
       isPrerelease:
-            description: 'Is this a beta version?'
-            type: choice
-            required: true
-            default: 'false'
-            options:
-              - 'true'
-              - 'false'
+        description: 'Is this a beta version?'
+        required: false
+        default: false
+        type: boolean
 jobs:
   publish:
     runs-on: [windows-latest]
