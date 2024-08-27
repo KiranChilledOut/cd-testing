@@ -25,7 +25,7 @@ jobs:
         name: test bool
         shell: powershell
         run: |
-          $isPrerelease = if( ${{ github.event.inputs.isPrerelease }} -eq 'true'){
+          $isPrerelease = if( '${{ github.event.inputs.isPrerelease }}' -eq 'true'){
             $true
           } else {
             $false
