@@ -1,0 +1,34 @@
+name: test cd bool
+
+# This workflow is triggered whenever commits are pushed to the main branch
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'web/**'
+  workflow_dispatch:
+    inputs:
+      isPrerelease:
+            description: 'Is this a beta version?'
+            type: choice
+            required: true
+            default: 'false'
+            options:
+              - 'true'
+              - 'false'
+jobs:
+  publish:
+    runs-on: [windows-latest]
+    steps:
+      - id: check_if_versions_bumped
+        name: test bool
+        shell: powershell
+        run: |
+          $isPrerelease = if( ${{ github.event.inputs.isPrerelease }} -eq 'true'){
+            $true
+          } else {
+            $false
+          }
+          if($isPrerelease){write-output "This is prerelease"}else{Write-OutPut "This is not prerelease"}
+          
